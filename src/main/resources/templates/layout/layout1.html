@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="setContent(content)"> <!-- CONTENT 영역 변경을 위해 추가 -->
+        <!-- content라는 파라미터를 받아서 아래 39라인의 content로 전달 -->
+<head>
+    <meta charset="UTF-8">
+    <title>Layout Template 1</title> <!-- 레이아웃 템플릿 예제의 화면 디자인 -->
+</head>
+<body>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            width: 100vw;
+            height: 20vh;
+            background-color: aqua;
+        }
+        .content {
+            width: 100vw;
+            height: 70vh;
+            background-color: lightgray;
+        }
+        .footer {
+            width: 100vw;
+            height: 10vh;
+            background-color: green;
+        }
+    </style>
+
+    <div class="header">
+        <h1>HEADER</h1>
+    </div>
+
+    <div class="content">
+        <th:block th:replace = "${content}"></th:block>
+    </div>
+
+    <div class="footer">
+        <h1>FOOTER</h1>
+    </div>
+</body>
+</th:block>
+</html>
