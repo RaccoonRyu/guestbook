@@ -5,13 +5,13 @@ spring:
     username: bootuser
     password: bootuser
 
-    jpa:
+  jpa:
+    hibernate:
+      ddl-auto: update # 프로젝트 실행시 자동으로 DDL 실행
+    properties:
       hibernate:
-        ddl-auto: update # 프로젝트 실행시 자동으로 DDL 실행
-      properties:
-        hibernate:
-          format_sql: true # Hibernate가 동작하며 발생하는 SQL 출력
-          show_sql: true # JPA 처리시 발생하는 SQL 보여줌
+        format_sql: true # Hibernate가 동작하며 발생하는 SQL 출력
+        show_sql: true # JPA 처리시 발생하는 SQL 보여줌
 
     thymeleaf:
       cache: false
