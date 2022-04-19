@@ -10,6 +10,9 @@ import javax.persistence.*;
 /**
  * GuestBookDTO
  * - 방명록 CRUD에 사용될 엔티티 객체
+ *
+ * @author 류지헌
+ * @created 2022-04-19
  */
 @Entity
 @Builder
