@@ -5,6 +5,13 @@ import org.springframework.stereotype.Service;
 import org.zerock.guestbook.dto.GuestBookDTO;
 import org.zerock.guestbook.svc.GuestBookService;
 
+/**
+ * GuestBookServiceImpl
+ * - 방명록 서비스 Impl
+ *
+ * @author 류지헌
+ * @created 2022-04-20
+ */
 @Service
 @Log4j2
 public class GuestBookServiceImpl implements GuestBookService {
