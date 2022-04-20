@@ -1,3 +1,10 @@
+buildscript {
+	ext {
+		queryDslVersion = "5.0.0"
+	}
+}
+
+
 plugins {
 	id 'org.springframework.boot' version '2.5.12'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -6,7 +13,7 @@ plugins {
 
 group = 'org.zerock'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '8'
 
 configurations {
 	compileOnly {
@@ -24,12 +31,48 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation group:'org.mariadb.jdbc', name:'mariadb-java-client'
-	implementation group:'org.thymeleaf.extras', name:'thymeleaf-extras-java8time'
+
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
+
+	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+
+	annotationProcessor(
+
+			"javax.persistence:javax.persistence-api",
+
+			"javax.annotation:javax.annotation-api",
+
+			"com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+
+
+	implementation 'org.modelmapper:modelmapper:3.1.0'
+
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+
+	implementation 'net.coobird:thumbnailator:0.4.16'
+
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"]
+		}
+	}
 }
