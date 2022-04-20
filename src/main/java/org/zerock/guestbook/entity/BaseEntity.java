@@ -1,4 +1,4 @@
-package org.zerock.guestbook.dto;
+package org.zerock.guestbook.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

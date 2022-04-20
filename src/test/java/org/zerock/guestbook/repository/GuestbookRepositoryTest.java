@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.zerock.guestbook.dto.GuestBook;
+import org.zerock.guestbook.entity.GuestBook;
 
 import org.springframework.data.domain.*;
-import org.zerock.guestbook.dto.QGuestBook;
+import org.zerock.guestbook.entity.QGuestBook;
 
 import java.util.Optional;
 import java.util.stream.IntStream;
