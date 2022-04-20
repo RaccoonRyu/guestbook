@@ -3,7 +3,7 @@ package org.zerock.guestbook.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
-import org.zerock.guestbook.dto.GuestBookDTO;
+import org.zerock.guestbook.dto.GuestBook;
 
 /**
  * GuestbookRepository
@@ -12,6 +12,6 @@ import org.zerock.guestbook.dto.GuestBookDTO;
  * @author 류지헌
  * @created 2022-04-20
  */
-public interface GuestbookRepository extends JpaRepository<GuestBookDTO, Long>,
-        QuerydslPredicateExecutor<GuestBookDTO> {
+public interface GuestbookRepository extends JpaRepository<GuestBook, Long>,
+        QuerydslPredicateExecutor<GuestBook> {
 }

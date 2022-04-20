@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.zerock.guestbook.dto.GuestBookDTO;
+import org.zerock.guestbook.dto.GuestBook;
 
 import org.springframework.data.domain.*;
-import org.zerock.guestbook.dto.QGuestBookDTO;
+import org.zerock.guestbook.dto.QGuestBook;
 
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -32,26 +32,26 @@ public class GuestbookRepositoryTest {
     public void insertDummies() { // 300개의 테스트 데이터 삽입
         IntStream.rangeClosed(1,300).forEach(i ->{
 
-            GuestBookDTO guestBookDTO = GuestBookDTO.builder()
+            GuestBook guestBook = GuestBook.builder()
                     .title("Title : "+i)
                     .content("Content : "+i)
                     .writer("User : "+i)
                     .build();
-            System.out.println(guestbookRepository.save(guestBookDTO));
+            System.out.println(guestbookRepository.save(guestBook));
         });
     }
 
     @Test
     public void updateTest() { // 최종 수정시간 반영 테스트
-        Optional<GuestBookDTO> result = guestbookRepository.findById(300L);
+        Optional<GuestBook> result = guestbookRepository.findById(300L);
 
         if(result.isPresent()){
-            GuestBookDTO guestBookDTO = result.get();
+            GuestBook guestBook = result.get();
 
-            guestBookDTO.setTitle("Change Title");
-            guestBookDTO.setContent("Change Content");
+            guestBook.setTitle("Change Title");
+            guestBook.setContent("Change Content");
 
-            guestbookRepository.save(guestBookDTO);
+            guestbookRepository.save(guestBook);
         }
     }
 
@@ -60,7 +60,7 @@ public class GuestbookRepositoryTest {
         // 제목에 1이라는 글자가 있는 엔티티들을 검색하는 테스트
         Pageable page = PageRequest.of(0, 10, Sort.by("gno").descending());
 
-        QGuestBookDTO qGuestBookDTO = QGuestBookDTO.guestBookDTO;
+        QGuestBook qGuestBook = QGuestBook.guestBook;
 
         String keyword = "1";
         
@@ -68,16 +68,16 @@ public class GuestbookRepositoryTest {
         BooleanBuilder builder = new BooleanBuilder();
 
         // 엔티티 검색 조건을 작성
-        BooleanExpression expression = qGuestBookDTO.title.contains(keyword);
+        BooleanExpression expression = qGuestBook.title.contains(keyword);
         
         // 엔티티 검색 조건을 and나 or 키워드와 결합 후 BooleanBuilder에 추가
         builder.and(expression);
         
         // BooleanBuilder 실행
-        Page<GuestBookDTO> result = guestbookRepository.findAll(builder, page);
+        Page<GuestBook> result = guestbookRepository.findAll(builder, page);
 
-        result.stream().forEach(guestBookDTO -> {
-            System.out.println(guestBookDTO);
+        result.stream().forEach(guestBook -> {
+            System.out.println(guestBook);
         });
     }
 
@@ -86,7 +86,7 @@ public class GuestbookRepositoryTest {
         // 제목혹은 내용에 특정 키워드가 있고 gno가 0보다 큰 엔티티들을 검색하는 테스트
         Pageable page = PageRequest.of(0, 10, Sort.by("gno").descending());
 
-        QGuestBookDTO qGuestBookDTO = QGuestBookDTO.guestBookDTO;
+        QGuestBook qGuestBook = QGuestBook.guestBook;
 
         String keyword = "1";
 
@@ -94,9 +94,9 @@ public class GuestbookRepositoryTest {
         BooleanBuilder builder = new BooleanBuilder();
 
         // 엔티티 검색 조건을 작성
-        BooleanExpression exTitle = qGuestBookDTO.title.contains(keyword);
+        BooleanExpression exTitle = qGuestBook.title.contains(keyword);
 
-        BooleanExpression exContent = qGuestBookDTO.content.contains(keyword);
+        BooleanExpression exContent = qGuestBook.content.contains(keyword);
 
         // 엔티티 검색 조건을 and나 or 키워드에 결합
         BooleanExpression exAll = exTitle.or(exContent);
@@ -105,13 +105,13 @@ public class GuestbookRepositoryTest {
         builder.and(exAll);
 
         // 검색 조건을 특정 변수에 할당하지 않고 바로 결합할 수 있다.
-        builder.and(qGuestBookDTO.gno.gt(0L)); // gno가 0보다 큰 조건
+        builder.and(qGuestBook.gno.gt(0L)); // gno가 0보다 큰 조건
 
         // BooleanBuilder 실행
-        Page<GuestBookDTO> result = guestbookRepository.findAll(builder, page);
+        Page<GuestBook> result = guestbookRepository.findAll(builder, page);
 
-        result.stream().forEach(guestBookDTO -> {
-            System.out.println(guestBookDTO);
+        result.stream().forEach(guestBook -> {
+            System.out.println(guestBook);
         });
     }
 }

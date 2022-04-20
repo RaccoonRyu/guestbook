@@ -11,7 +11,7 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 /**
- * BaseDTO
+ * BaseEntity
  * - 엔티티 객체의 등록/최종 수정시간을 담당할 추상클래스
  *
  * @author 류지헌
@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass // 해당 어노테이션이 적용된 클래스는 테이블로 생성되지 않음
 @EntityListeners(value = {AuditingEntityListener.class}) // JPA 내부에서 엔티티 객체가 생성/변경됨을 감지하는 어노테이션
 @Getter
-abstract class BaseDTO {
+abstract class BaseEntity {
     
     @CreatedDate
     @Column(name = "regdate", updatable = false)

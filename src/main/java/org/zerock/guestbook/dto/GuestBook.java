@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 /**
- * GuestBookDTO
+ * GuestBook
  * - 방명록 CRUD에 사용될 엔티티 객체
  *
  * @author 류지헌
@@ -19,7 +19,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class GuestBookDTO extends BaseDTO {
+public class GuestBook extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
