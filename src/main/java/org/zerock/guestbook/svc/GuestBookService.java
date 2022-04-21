@@ -28,7 +28,7 @@ public interface GuestBookService {
         return gbEntity;
     }
 
-    default GuestBookDTO EntityTodto(GuestBook guestBook) {
+    default GuestBookDTO entityTodto(GuestBook guestBook) {
         GuestBookDTO guestBookDTO = GuestBookDTO.builder()
                 .gno(guestBook.getGno())
                 .title(guestBook.getTitle())
