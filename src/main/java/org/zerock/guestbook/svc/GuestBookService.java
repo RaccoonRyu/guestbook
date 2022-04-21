@@ -1,6 +1,7 @@
 package org.zerock.guestbook.svc;
 
 import org.zerock.guestbook.dto.GuestBookDTO;
+import org.zerock.guestbook.entity.GuestBook;
 
 /**
  * GuestBookService
@@ -11,4 +12,15 @@ import org.zerock.guestbook.dto.GuestBookDTO;
  */
 public interface GuestBookService {
     Long registGuestbook(GuestBookDTO guestBookDTO);
+
+    default GuestBook dtoToEntity(GuestBookDTO guestBookDTO) {
+        GuestBook gbEntity = GuestBook.builder()
+                .gno(guestBookDTO.getGno())
+                .title(guestBookDTO.getTitle())
+                .content(guestBookDTO.getContent())
+                .writer(guestBookDTO.getWriter())
+                .build();
+
+        return gbEntity;
+    }
 }
