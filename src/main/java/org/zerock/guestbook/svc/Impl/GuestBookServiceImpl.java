@@ -3,6 +3,7 @@ package org.zerock.guestbook.svc.Impl;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.zerock.guestbook.dto.GuestBookDTO;
+import org.zerock.guestbook.entity.GuestBook;
 import org.zerock.guestbook.svc.GuestBookService;
 
 /**
@@ -18,6 +19,13 @@ public class GuestBookServiceImpl implements GuestBookService {
 
     @Override
     public Long registGuestbook(GuestBookDTO guestBookDTO) {
+
+        log.info("DTO --------------------------------");
+        log.info(guestBookDTO);
+
+        GuestBook gbEntity = dtoToEntity(guestBookDTO);
+        log.info(gbEntity);
+
         return null;
     }
 }
