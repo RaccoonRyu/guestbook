@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.zerock.guestbook.dto.GuestBookDTO;
+import org.zerock.guestbook.dto.PageRequestDTO;
+import org.zerock.guestbook.dto.PageResultDTO;
+import org.zerock.guestbook.entity.GuestBook;
 import org.zerock.guestbook.svc.GuestBookService;
 
 /**
@@ -29,5 +32,19 @@ public class GuestBookServiceTest {
                 .build();
 
         System.out.println(guestBookService.registGuestbook(guestBookDTO));
+    }
+
+    @Test
+    public void testList() { // Entity가 DTO로 변환되었는지 확인
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .build();
+
+        PageResultDTO<GuestBookDTO, GuestBook> gbResultDTO = guestBookService.getList(pageRequestDTO);
+
+        for(GuestBookDTO guestbookDTO : gbResultDTO.getDtoList()) {
+            System.out.println(guestbookDTO);
+        }
     }
 }
