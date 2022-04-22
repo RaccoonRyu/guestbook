@@ -24,7 +24,7 @@ import java.util.function.Function;
  */
 @Service
 @Log4j2
-@RequiredArgsConstructor
+@RequiredArgsConstructor // 클래스 선언시 리포지토리 자동 주입
 public class GuestBookServiceImpl implements GuestBookService {
 
     private final GuestbookRepository guestbookRepository;

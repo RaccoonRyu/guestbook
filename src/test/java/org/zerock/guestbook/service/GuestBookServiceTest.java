@@ -53,7 +53,7 @@ public class GuestBookServiceTest {
         }
 
         System.out.println("=============================================");
-        gbResultDTO.getPageList().forEach(i->System.out.println(i));
+        gbResultDTO.getPageList().forEach(i->System.out.println(i)); // 화면에 출력될 페이지 번호들
     }
 
 }
